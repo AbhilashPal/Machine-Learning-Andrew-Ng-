@@ -21,24 +21,25 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
-K=ones(size(X,1),1);
+K=ones(size(X,1),1);		%adding extra parameter x[0]
 % Adding X0
 X=[K X];
 
 % FOR FIRST LAYER : 
 
-A1 = X*Theta1';
+A1 = X*Theta1';				%multiplying by the weights
 A1 = sigmoid(A1);
 K=ones(size(A1,1),1);		% K is of the size of first column of A1 and is filled with ones. :")
 A1 = [K A1]; 				% Adding extra parameter a(1)[0]
 
 % For Second Layer :
 
-A2=A1*Theta2';
-A2=sigmoid(A2);
+A2=A1*Theta2';				%multiplying by the weights
+A2=sigmoid(A2);				%Sigmoid is the activation function of every element in the Matrix
 % For last Layer :
 
-[m p] = max(A2,[],2);
+[m p] = max(A2,[],2);		% For the prediction we predict for X the value of the maximum rowwise element in A2, 
+                        % the activation values out of the last layer.
 
 
 % =========================================================================
